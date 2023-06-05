@@ -18,5 +18,9 @@ describe('<Home />', () =>{
 
         expect(newTask).toBeOnTheScreen();
         expect(newTask).toBeVisible();
+    });
+
+    it('Should remove a task', () => {
+        
     })
 })
