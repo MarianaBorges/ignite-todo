@@ -79,7 +79,7 @@ function Home(){
     }
 
     return (
-        <View style={styles.container}>
+        <View testID="HomeScreen" style={styles.container}>
             <View style={styles.header}>
                 <Logo />
             </View>
