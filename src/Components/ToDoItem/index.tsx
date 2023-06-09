@@ -6,7 +6,7 @@ import { CheckButton } from "../CheckButton";
 import { styles } from "./styles";
 import { TaskProps } from "../../Screens/Home";
 
-interface ToDoItemProps{
+export interface ToDoItemProps{
     item: TaskProps,
     onDelete: () => void;
     onFinish: () => void;
@@ -27,7 +27,7 @@ function ToDoItem({item, onDelete, onFinish}: ToDoItemProps){
             </View>
 
             <TouchableOpacity 
-                testID="button-delete"
+                testID={`button-delete`}
                 onPress={onDelete}
                 activeOpacity={0.6}
             >

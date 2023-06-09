@@ -5,7 +5,8 @@ describe('<ToDoItem />', () => {
 
     const itemMock = {
         description: 'Item',
-        done: false
+        done: false,
+        id: "1"
     }
 
     const deleteMock = jest.fn();
@@ -21,7 +22,7 @@ describe('<ToDoItem />', () => {
     it('Should call a function when press delete button', () => {
         render(<ToDoItem item={itemMock} onDelete={deleteMock}/>);
 
-        const buttonDelete = screen.getByTestId('button-delete');
+        const buttonDelete = screen.getByTestId(`button-delete`);
         fireEvent.press(buttonDelete);
 
         expect(deleteMock).toHaveBeenCalledTimes(1);

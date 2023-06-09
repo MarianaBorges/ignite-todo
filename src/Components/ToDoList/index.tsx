@@ -1,13 +1,36 @@
 import React from "react";
 import { Text, View, FlatList, FlatListProps } from "react-native";
-import { ItemProps } from "../ToDoItem";
+import { TaskProps } from "../../Screens/Home";
 import { styles } from "./styles";
 import { theme } from "../../theme/theme";
 import { EmptyList } from "../EmptyList";
 
-interface ToDoListProps extends FlatListProps<ItemProps>{
+interface ToDoListProps extends FlatListProps<TaskProps>{
     created: number;
     concluded: number;
+}
+
+interface CountProps {
+    title: string;
+    count: number;
+    color: string;
+    countTestId?: string;
+}
+
+function Count({title, count, color, countTestId}: CountProps) {
+    return (
+        <View style={styles.counts}>
+            <Text
+                testID={`count-title-${countTestId}`}
+                style={[styles.titleCount, {color: color}]}
+            >
+                    {title}
+            </Text>
+            <View style={styles.countCircle}>
+                <Text testID={`count-${countTestId}`} style={styles.titleCount}>{count}</Text>
+            </View>
+        </View>
+    )
 }
 
 
@@ -15,19 +38,19 @@ function ToDoList({created, concluded, ... rest}: ToDoListProps){
     return (
         <View style={styles.container}>
             <View style={styles.contentCounts}>
-                <View style={styles.counts}>
-                    <Text style={[styles.titleCount, {color: theme.colors.blue}]}>Criadas</Text>
-                    <View style={styles.countCircle}>
-                        <Text style={styles.titleCount}>{created}</Text>
-                    </View>
-                </View>
-                <View style={styles.counts}>
-                    <Text style={[styles.titleCount, {color: theme.colors.purple}]}>Concluídas</Text>
-                    <View style={styles.countCircle}>
-                        <Text style={styles.titleCount}>{concluded}</Text>
-                    </View>
-                </View>
-                </View>
+                <Count
+                    title='Criadas'
+                    countTestId={'created'} 
+                    count={created} 
+                    color={theme.colors.blue}
+                />
+                <Count
+                    title='Concluídas'
+                    countTestId={'concluded'}  
+                    count={concluded} 
+                    color={theme.colors.purple}
+                />
+            </View>
             <FlatList 
                 testID="list"
                 ListEmptyComponent={<EmptyList />}
