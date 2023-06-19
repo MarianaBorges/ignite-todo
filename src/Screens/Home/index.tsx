@@ -6,6 +6,7 @@ import { Button } from "../../Components/Button";
 import { ToDoItem } from "../../Components/ToDoItem";
 import { ToDoList } from "../../Components/ToDoList";
 import { Logo } from "../../Components/Logo";
+import { Alert as AlertModal } from "../../Components/Alert";
 
 const DATA = [
     {
@@ -40,6 +41,8 @@ function Home(){
 
     const [tasks, setTasks] = useState<TaskProps[]>([]);
     const [task, setTask] = useState('');
+    const [isModalVisible, setModalVisible] = useState(false);
+    const [idDelete, setDelete] = useState('');
 
     function addNewTask(){
         if (task){
@@ -68,14 +71,9 @@ function Home(){
     }
 
     function deleteTask(id: string){
-        Alert.alert('Atenção', 'Tem certeza que quer apagar essa tarefa?', [
-            {
-              text: 'Não',
-              onPress: () => {},
-              style: 'cancel',
-            },
-            {text: 'Sim', onPress: () => setTasks(prevStatus => prevStatus.filter(oldTask => oldTask.id != id))}
-        ]);
+        setTasks(prevStatus => prevStatus.filter(oldTask => oldTask.id != id));
+        setDelete('');
+        setModalVisible(false);
     }
 
     return (
@@ -99,10 +97,18 @@ function Home(){
                 renderItem={({item}) => 
                     (<ToDoItem 
                         item={item} 
-                        onDelete={() => deleteTask(item.id)}
+                        onDelete={() => { 
+                            setModalVisible(!isModalVisible);
+                            setDelete(item.id);
+                        }}
                         onFinish={() => finishTask(item.id)}
                     />)}
                 keyExtractor={item => item.id}
+            />
+            <AlertModal 
+                isVisible={isModalVisible} 
+                onConfirm={() => deleteTask(idDelete)} 
+                onCancel={() => setModalVisible(!isModalVisible)}
             />
         </View>
     )
