@@ -44,7 +44,7 @@ module.exports = {
     attached: {
       type: 'android.attached',
       device: {
-        adbName: '32803535'
+        adbName: 'emulator-5554'
       }
     },
     emulator: {

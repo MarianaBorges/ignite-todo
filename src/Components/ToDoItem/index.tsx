@@ -27,9 +27,10 @@ function ToDoItem({item, onDelete, onFinish}: ToDoItemProps){
             </View>
 
             <TouchableOpacity 
-                testID={`button-delete`}
-                onPress={onDelete}
+                testID="button-delete"
+                onPress={() => onDelete()}
                 activeOpacity={0.6}
+                style={styles.button}
             >
                 <MaterialCommunityIcons 
                     name="trash-can-outline" 
@@ -37,6 +38,7 @@ function ToDoItem({item, onDelete, onFinish}: ToDoItemProps){
                     color={theme.colors.gray300}
                 />
             </TouchableOpacity>
+            
         </View>
     )
 }

@@ -27,6 +27,9 @@ const styles = StyleSheet.create({
         fontSize: 13,
         color: theme.colors.gray300,
         textDecorationLine: 'line-through'
+    },
+    button: {
+        padding: 3
     }
 });
 

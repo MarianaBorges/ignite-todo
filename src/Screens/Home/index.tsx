@@ -98,6 +98,7 @@ function Home(){
                     (<ToDoItem 
                         item={item} 
                         onDelete={() => { 
+                            console.log('On delete')
                             setModalVisible(!isModalVisible);
                             setDelete(item.id);
                         }}
