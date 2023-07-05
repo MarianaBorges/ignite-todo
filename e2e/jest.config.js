@@ -2,7 +2,7 @@
 module.exports = {
   preset: 'react-native',
   rootDir: '..',
-  testMatch: ['<rootDir>/e2e/**/*.test.ts'],
+  testMatch: ['<rootDir>/e2e/**/*.e2e.ts'],
   testTimeout: 120000,
   maxWorkers: 1,
   globalSetup: 'detox/runners/jest/globalSetup',
